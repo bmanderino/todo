@@ -6,11 +6,7 @@ export const RemoveTaskButton = ({...props}) => {
     onDelete, // (id) => {}
   } = props
 
-  const handleDelete = () => {
-    onDelete()
-  }
-
-  return <button onClick={handleDelete}>x</button>
+  return <button onClick={onDelete}>X</button>
 }
 
 RemoveTaskButton.propTypes = {

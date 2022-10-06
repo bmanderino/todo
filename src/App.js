@@ -46,25 +46,20 @@ Stretch:
 function App() {
   const [todos, setTodos] = useState(tasks)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (text, e) => {
     e.preventDefault()
-    console.log(e)
+    let newItem = {text: text, completed: false, id: getID()}
+    setTodos(prev => [...prev, newItem])
   }
 
-  // const taskList = tasks.map(item=>(
-  //
-  // ))
-
   return (
-    <>
-      <p>ToDo App</p>
-      <NewTaskForm onFormSubmit={handleSubmit} />
-      <ToDoList todos={todos} />
-
-      {/* <ul>
-      {taskList}
-      </ul> */}
-    </>
+    <div id="App">
+      <div className='container'>
+        <h1 className='mainTitle'>ToDo App</h1>
+        <NewTaskForm onFormSubmit={handleSubmit} />
+        <ToDoList todos={todos} setAllTasks={setTodos} />
+      </div>
+    </div>
   );
 }
 

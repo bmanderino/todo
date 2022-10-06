@@ -8,6 +8,19 @@ export const ToDoList =({ ...props }) => {
     setAllTasks
   } = props
 
+  const handleDelete = (id) => () => {
+    setAllTasks(todos.filter((item) => item.id !== id))
+  }
+
+  const handleComplete = (id) => () => {
+    setAllTasks(todos.map((item) => {
+      if (item.id === id) {
+        item.completed = !item.completed
+      }
+      return item
+    }))
+  }
+
   return (
     <div>
       {todos.map(todo => (
@@ -16,8 +29,8 @@ export const ToDoList =({ ...props }) => {
           id={todo.id}
           text={todo.text}
           completed={todo.completed}
-          onDelete={null}
-          onToggleCompleted={null}
+          onDelete={handleDelete}
+          onToggleCompleted={handleComplete}
         />
       ))}
     </div>

@@ -13,11 +13,12 @@ export const NewTaskForm = ({...props}) => {
   }
 
   const handleFormSubmit = (text) => (e) => {
-    onFormSubmit(text)
+    onFormSubmit(text, e)
+    setText('')
   }
 
   return (
-    <div>
+    <div className="addTask">
       <form onSubmit={handleFormSubmit(text)}>
         <input value={text} onChange={handleInputChange} />
         <button type="submit" disabled={!text.length}>Add</button>
