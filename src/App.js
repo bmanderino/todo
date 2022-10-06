@@ -1,24 +1,70 @@
-import logo from './logo.svg';
+import React, {useState} from 'react'
 import './App.css';
+import { NewTaskForm } from './components/NewTaskForm';
+import { ToDoList } from './components/ToDoList';
+
+let nextID = 0;
+const getID = () => ++nextID;
+
+const tasks = [
+  {
+    id: getID(), // unique
+    text: "Clean", // not unique
+    completed: true
+  },
+  {
+    id: getID(),
+    text:"Vacuum",
+    completed: false
+  }
+]
+
+/*
+
+Features:
+List of active tasks
+Input/Add Task
+checkbox/Complete task
+remove task
+
+Stretch:
+  - only show incomplete
+  - sort by creation time or name
+  - ...
+
+- hooks | class components with state
+
+- which components we need
+  - responsibilities of each component
+- API between components
+  - internal state(?)
+
+*/
+
+
 
 function App() {
+  const [todos, setTodos] = useState(tasks)
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(e)
+  }
+
+  // const taskList = tasks.map(item=>(
+  //
+  // ))
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <p>ToDo App</p>
+      <NewTaskForm onFormSubmit={handleSubmit} />
+      <ToDoList todos={todos} />
+
+      {/* <ul>
+      {taskList}
+      </ul> */}
+    </>
   );
 }
 
