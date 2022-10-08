@@ -14,7 +14,7 @@ export const ToDoItem = ({...props}) => {
 
 
   return (
-    <div key={key} id={id} className="todoItem">
+    <div key={key} className="todoItem">
       <input type="checkbox" defaultChecked={completed} onChange={onToggleCompleted(id)} />
       {text}
       <RemoveTaskButton onDelete={onDelete(id)} />

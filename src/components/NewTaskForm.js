@@ -20,7 +20,7 @@ export const NewTaskForm = ({...props}) => {
   return (
     <div className="addTask">
       <form onSubmit={handleFormSubmit(text)}>
-        <input value={text} onChange={handleInputChange} />
+        <input value={text} onChange={handleInputChange} placeholder='Add a task' />
         <button type="submit" disabled={!text.length}>Add</button>
       </form>
     </div>

@@ -9,11 +9,11 @@ export const ToDoList =({ ...props }) => {
   } = props
 
   const handleDelete = (id) => () => {
-    setAllTasks(todos.filter((item) => item.id !== id))
+    setAllTasks(prev => prev.filter((item) => item.id !== id))
   }
 
   const handleComplete = (id) => () => {
-    setAllTasks(todos.map((item) => {
+    setAllTasks(prev => prev.map((item) => {
       if (item.id === id) {
         item.completed = !item.completed
       }

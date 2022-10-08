@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import './App.css';
 import { NewTaskForm } from './components/NewTaskForm';
 import { ToDoList } from './components/ToDoList';
@@ -10,7 +10,7 @@ const tasks = [
   {
     id: getID(), // unique
     text: "Clean", // not unique
-    completed: true
+    completed: false
   },
   {
     id: getID(),
@@ -18,6 +18,10 @@ const tasks = [
     completed: false
   }
 ]
+
+const initializeTaskList = () => {
+  return JSON.parse(window.localStorage.getItem('tasks')) ?? tasks
+}
 
 /*
 
@@ -44,19 +48,23 @@ Stretch:
 
 
 function App() {
-  const [todos, setTodos] = useState(tasks)
+  const [todos, setTodos] = useState(initializeTaskList())
 
-  const handleSubmit = (text, e) => {
+  const addNewTask = (text, e) => {
     e.preventDefault()
     let newItem = {text: text, completed: false, id: getID()}
     setTodos(prev => [...prev, newItem])
   }
 
+  useEffect(() => {
+    window.localStorage.setItem('tasks', JSON.stringify(todos))
+  },[todos])
+
   return (
     <div id="App">
       <div className='container'>
         <h1 className='mainTitle'>ToDo App</h1>
-        <NewTaskForm onFormSubmit={handleSubmit} />
+        <NewTaskForm onFormSubmit={addNewTask} />
         <ToDoList todos={todos} setAllTasks={setTodos} />
       </div>
     </div>
