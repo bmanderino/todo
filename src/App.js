@@ -48,7 +48,7 @@ Stretch:
 
 
 function App() {
-  const [todos, setTodos] = useState(initializeTaskList())
+  const [todos, setTodos] = useState(initializeTaskList)
 
   const addNewTask = (text, e) => {
     e.preventDefault()
