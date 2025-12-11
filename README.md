@@ -4,7 +4,8 @@ A simple todo list to add, complete, and remove tasks. State is persisted to loc
 
 ## Tech Stack
 
-- React (Create React App)
+- React
+- Vite
 - TypeScript
 - CSS modules
 - localStorage for persistence
