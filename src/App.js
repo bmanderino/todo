@@ -23,30 +23,6 @@ const initializeTaskList = () => {
   return JSON.parse(window.localStorage.getItem('tasks')) ?? tasks
 }
 
-/*
-
-Features:
-List of active tasks
-Input/Add Task
-checkbox/Complete task
-remove task
-
-Stretch:
-  - only show incomplete
-  - sort by creation time or name
-  - ...
-
-- hooks | class components with state
-
-- which components we need
-  - responsibilities of each component
-- API between components
-  - internal state(?)
-
-*/
-
-
-
 function App() {
   const [todos, setTodos] = useState(initializeTaskList)
 
@@ -72,3 +48,27 @@ function App() {
 }
 
 export default App;
+
+
+
+/*
+
+Features:
+List of active tasks
+Input/Add Task
+checkbox/Complete task
+remove task
+
+Stretch:
+  - only show incomplete
+  - sort by creation time or name
+  - ...
+
+- hooks | class components with state
+
+- which components we need
+  - responsibilities of each component
+- API between components
+  - internal state(?)
+
+*/
