@@ -1,15 +1,15 @@
-import React, {useState, useEffect} from 'react'
+import {useState, useEffect} from 'react'
 import './App.css';
-import { NewTaskForm } from './components/NewTaskForm';
-import { ToDoList } from './components/ToDoList';
+import  { NewTaskForm }  from './components/NewTaskForm';
+import { TaskList, type Task } from './components/TaskList';
 
 let nextID = 0;
 const getID = () => ++nextID;
 
-const tasks = [
+const tasks: Task[] = [
   {
-    id: getID(), // unique
-    text: "Clean", // not unique
+    id: getID(),
+    text: "Clean",
     completed: false
   },
   {
@@ -20,13 +20,14 @@ const tasks = [
 ]
 
 const initializeTaskList = () => {
-  return JSON.parse(window.localStorage.getItem('tasks')) ?? tasks
+  const raw = window.localStorage.getItem('tasks');
+  return raw ? (JSON.parse(raw) as Task[]) : tasks;
 }
 
 function App() {
-  const [todos, setTodos] = useState(initializeTaskList)
+  const [todos, setTodos] = useState<Task[]>(initializeTaskList)
 
-  const addNewTask = (text, e) => {
+  const addNewTask = (text: string, e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     let newItem = {text: text, completed: false, id: getID()}
     setTodos(prev => [...prev, newItem])
@@ -39,9 +40,9 @@ function App() {
   return (
     <div id="App">
       <div className='container'>
-        <h1 className='mainTitle'>ToDo App</h1>
+        <h1 className='mainTitle'>Get it done!</h1>
         <NewTaskForm onFormSubmit={addNewTask} />
-        <ToDoList todos={todos} setAllTasks={setTodos} />
+        <TaskList todos={todos} setAllTasks={setTodos} />
       </div>
     </div>
   );

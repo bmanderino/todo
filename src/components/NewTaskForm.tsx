@@ -1,18 +1,17 @@
-import React, {useState, useEffect} from 'react'
-import PropTypes from 'prop-types';
+import {useState} from 'react'
 
-export const NewTaskForm = ({...props}) => {
-  const {
-    onFormSubmit,
-  } = props
+type Prop = {
+  onFormSubmit: (text: string, e:React.FormEvent<HTMLFormElement>) => void
+}
 
+export const NewTaskForm = ({onFormSubmit}: Prop) => {
   const [text, setText] = useState('')
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value)
   }
 
-  const handleFormSubmit = (text) => (e) => {
+  const handleFormSubmit = (text: string) => (e: React.FormEvent<HTMLFormElement>) => {
     onFormSubmit(text, e)
     setText('')
   }
@@ -26,7 +25,3 @@ export const NewTaskForm = ({...props}) => {
     </div>
   )
 }
-
-NewTaskForm.propTypes = {
-  onFormSubmit: PropTypes.func
-};
